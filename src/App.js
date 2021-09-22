@@ -3,33 +3,29 @@ import React from 'react';
 
 const App = () => {
   const [input,setInput] = React.useState('');
-  const [todos,setTodos] = React.useState(['a','b','c'])
-  const [dones, setDones] = React.useState(['d','e']);
+  // const [todos,setTodos] = React.useState([{task:'',isCompleted:'',}]);
+  const [todos,setTodos] = React.useState([{task:'a',isCompleted:true},{task:'b',isCompleted:true},{task:'c',isCompleted:false},{task:'d',isCompleted:false}]);
 
   const handleChange = (event) => {
     setInput(event.target.value);
   }
 
   const addTodo = () => {
-    setTodos([...todos,input]);
+    const newTodos = todos.filter(todo => (todo.isCompleted===false));
+    setTodos([...newTodos,{task:input,isCompleted:false}]);
     setInput('');
   }
 
   const makeDone = (key) => {
-    setDones([...dones,todos[key]])
-    setTodos(todos.filter((todo,index) => (index!==key)));
+    const newTodos = todos;
+    newTodos[key].isCompleted = true;
+    setTodos([...newTodos]);
   }
 
   const deleteTodo = (key) => {
     const newTodos=[...todos];
     newTodos.splice(key,1);
     setTodos(newTodos);
-  }
-
-  const deleteDone = (key) => {
-    const newDones=[...dones];
-    newDones.splice(key,1);
-    setDones(newDones);
   }
 
   return(
@@ -39,21 +35,23 @@ const App = () => {
       <button onClick={addTodo}>Add</button>
       <h3>することリスト</h3>
       <ol>  
-        {todos.map((todo,index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => makeDone(index)}>Done</button>
-            <button onClick={() => deleteTodo(index)}>Delete</button>
-          </li>
+      {todos.map((todo,index) => (
+        todo.isCompleted===false && 
+          (<li key={index}>
+          {todo.task}
+          <button onClick={() => makeDone(index)}>Done</button>
+          <button onClick={() => deleteTodo(index)}>Delete</button>
+          </li>)
         ))}
       </ol>
       <h3>終わったことリスト</h3>
       <ol>  
-        {dones.map((done,index) => (
-          <li key={index}>
-            {done}
-            <button onClick={() => deleteDone(index)}>Delete</button>
-        </li>
+      {todos.map((todo,index) => (
+        todo.isCompleted===true && 
+          (<li key={index}>
+          {todo.task}
+          <button onClick={() => deleteTodo(index)}>Delete</button>
+          </li>)
         ))}
       </ol>
     </div>
