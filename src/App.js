@@ -11,7 +11,7 @@ const App = () => {
   }
 
   const addTodo = () => {
-    const newTodos = todos.filter(todo => (todo.isCompleted===false));
+    const newTodos = todos;
     setTodos([...newTodos,{task:input,isCompleted:false}]);
     setInput('');
   }
