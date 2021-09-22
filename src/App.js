@@ -7,11 +7,19 @@ const App = () => {
   const [todos,setTodos] = React.useState(['a','b'])
   const [dones, setDones] = React.useState(['c','d']);
 
-  
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  }
+
+  const addTodo = () => {
+    setTodos([...todos,input]);
+    setInput('');
+  }
   return(
     <div>
       <h2>TODOアプリ</h2>
-      
+      <input type="text" value={input} onChange={handleChange} placeholder='タスクを入力してください'/>
+      <Button onclick={addTodo} variant="contained">Add</Button>
       <h3>することリスト</h3>
       <ol>  
         {todos.map((todo,index) => (
