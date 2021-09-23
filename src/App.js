@@ -3,6 +3,10 @@ import TitleBar from './TitleBar.js';
 import Dialog from './Dialog.js';
 import Form from './Form.js';
 import Todo from './Todo.js';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 
 const App = () => {
   const [input,setInput] = React.useState('');
@@ -44,7 +48,12 @@ const App = () => {
   return(
     <div>
       <TitleBar />
-      <Dialog open={open} input={input} handleChange={handleChange} handleClickOpen={handleClickOpen} handleClose={handleClose} addTodo={addTodo}/>
+      <br/><br/>
+      <Grid container direction="column" alignItems="center">
+        <Grid item>
+          <Dialog open={open} input={input} handleChange={handleChange} handleClickOpen={handleClickOpen} handleClose={handleClose} addTodo={addTodo}/>
+        </Grid>
+      </Grid>
       <Todo todos={todos} makeDone={makeDone} deleteTodo={deleteTodo} />
     </div>
   )
