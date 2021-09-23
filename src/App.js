@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header.js'
-// import Button from '@mui/material/Button';
+import List from './List.js';
+import Todo from './Todo.js';
 
 const App = () => {
   const [input,setInput] = React.useState('');
@@ -32,29 +33,8 @@ const App = () => {
   return(
     <div>
       <Header />
-      <input type="text" value={input} onChange={handleChange} placeholder='タスクを入力してください'/>
-      <button onClick={addTodo}>Add</button>
-      <h3>することリスト</h3>
-      <ol>  
-      {todos.map((todo,index) => (
-        todo.isCompleted===false && 
-          (<li key={index}>
-          {todo.task}
-          <button onClick={() => makeDone(index)}>Done</button>
-          <button onClick={() => deleteTodo(index)}>Delete</button>
-          </li>)
-        ))}
-      </ol>
-      <h3>終わったことリスト</h3>
-      <ol>  
-      {todos.map((todo,index) => (
-        todo.isCompleted===true && 
-          (<li key={index}>
-          {todo.task}
-          <button onClick={() => deleteTodo(index)}>Delete</button>
-          </li>)
-        ))}
-      </ol>
+      <List input={input} handleChange={handleChange} addTodo={addTodo} />
+      <Todo todos={todos} makeDone={makeDone} deleteTodo={deleteTodo} />
     </div>
   )
 }
