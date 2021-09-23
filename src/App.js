@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 const App = () => {
+  
   const [input,setInput] = React.useState('');
   // const [todos,setTodos] = React.useState([{task:'',isCompleted:'',}]);
   const [todos,setTodos] = React.useState([{task:'a',isCompleted:true},{task:'b',isCompleted:true},{task:'c',isCompleted:false},{task:'d',isCompleted:false}]);
