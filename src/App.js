@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './Header.js'
 // import Button from '@mui/material/Button';
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
 
   return(
     <div>
-      <h2>TODOアプリ</h2>
+      <Header />
       <input type="text" value={input} onChange={handleChange} placeholder='タスクを入力してください'/>
       <button onClick={addTodo}>Add</button>
       <h3>することリスト</h3>
